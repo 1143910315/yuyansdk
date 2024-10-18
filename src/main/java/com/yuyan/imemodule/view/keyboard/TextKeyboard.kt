@@ -240,14 +240,14 @@ open class TextKeyboard(context: Context?) : BaseKeyboardView(context){
         val keyLabelSmall = softKey.getmKeyLabelSmall()
         val keyMnemonic = softKey.keyMnemonic
         val keyIcon = softKey.keyIcon
-        val weightHeigth = softKey.height() / 4f
+        val weightHeight = softKey.height() / 4f
         val textColor = mActiveTheme.keyTextColor
         if (keyboardSymbol && !TextUtils.isEmpty(keyLabelSmall)) {
             mPaint.color = textColor
             mPaint.setTypeface(Typeface.DEFAULT)
             mPaint.textSize = mNormalKeyTextSizeSmall.toFloat()
             val x = softKey.mLeft + (softKey.width() - mPaint.measureText(keyLabelSmall)) / 2.0f
-            val y = softKey.mTop + weightHeigth
+            val y = softKey.mTop + weightHeight
             canvas.drawText(keyLabelSmall, x, y, mPaint)
         }
         if (null != keyIcon) {
@@ -278,7 +278,7 @@ open class TextKeyboard(context: Context?) : BaseKeyboardView(context){
             mPaint.setTypeface(Typeface.DEFAULT)
             mPaint.textSize = mNormalKeyTextSizeSmall.toFloat()
             val x = softKey.mLeft + (softKey.width() - mPaint.measureText(keyMnemonic)) / 2.0f
-            val y = softKey.mTop + weightHeigth * 3 + weightHeigth / 2.0f
+            val y = softKey.mTop + weightHeight * 3 + weightHeight / 2.0f
             canvas.drawText(keyMnemonic!!, x, y, mPaint)
         }
     }
