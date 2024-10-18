@@ -12,7 +12,7 @@ import java.util.Hashtable;
  */
 public class Trie {
 
-    private Hashtable<String, Trie> values = new Hashtable<String, Trie>();//本节点包含的值
+    private final Hashtable<String, Trie> values = new Hashtable<>();//本节点包含的值
 
     private String pinyin;//本节点的拼音
 
@@ -38,14 +38,10 @@ public class Trie {
      * 加载拼音
      *
      * @param inStream 拼音文件输入流
-     * @throws IOException
+     * @throws IOException 错误
      */
     public synchronized void load(InputStream inStream) throws IOException {
-        BufferedReader bufferedReader = null;
-        InputStreamReader inputStreamReader = null;
-        try {
-            inputStreamReader = new InputStreamReader(inStream);
-            bufferedReader = new BufferedReader(inputStreamReader);
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inStream))) {
             String s;
             while ((s = bufferedReader.readLine()) != null) {
                 String[] keyAndValue = s.split(" ");
@@ -55,11 +51,6 @@ public class Trie {
                 trie.pinyin = keyAndValue[1];
                 put(keyAndValue[0], trie);
             }
-        } finally {
-            if (inputStreamReader != null)
-                inputStreamReader.close();
-            if (bufferedReader != null)
-                bufferedReader.close();
         }
     }
 
